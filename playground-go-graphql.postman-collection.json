@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "d2258853-90a2-4d1d-a4e3-3327c4911d3d",
+		"name": "playground-go-graphql",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25675685"
+	},
+	"item": [
+		{
+			"name": "get-players",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "{\n    query: getPlayers {\n        id\n        name\n        level\n        items {\n            id\n            name\n        }\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-player",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation CreatePlayer($createPlayerReq: NewPlayer!) {\n    createPlayer(req: $createPlayerReq) {\n        ...playerFields\n    }\n}\n\nfragment playerFields on Player {\n    id\n    name\n    level\n    class\n    items {\n        id\n        name\n    }\n}",
+						"variables": "{\n    \"createPlayerReq\": {\n        \"name\": \"Player 3\",\n        \"class\": \"MAGE\"\n    }\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/query",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"query"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
